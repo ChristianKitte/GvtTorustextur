@@ -7,9 +7,6 @@ uniform mat4 uPMatrix;
 uniform mat4 uMVMatrix;
 uniform mat3 uNMatrix;
 
-uniform int uShaderTyp;
-uniform float uToonSteps;
-
 //uniform vec4 uColor;
 varying vec4 vColor;
 
@@ -48,52 +45,6 @@ vec3 phong(vec3 p, vec3 n, vec3 v, LightSource l) {
     vec3 diffuse = material.kd * L * sn;
 
     vec3 specular = material.ks * L * pow(rv, material.ke);
-
-    if (uShaderTyp == 1) {
-        //http://www.florian-oeser.de/rtr/ue3/3.1.html
-
-        float stepDelta = 1.0 / uToonSteps;
-        float curLimeValue = 0.;
-
-        const float Counter = 50.;
-
-        for (float i = 0.;i < Counter; i += 1.) {
-            if (i < uToonSteps) {
-                if (sn < curLimeValue) {
-                    diffuse = L * curLimeValue;
-                    break;
-                } else {
-                    curLimeValue += stepDelta;
-                }
-            }
-        }
-
-    /*
-    // Diffuses Licht
-    if(sn<0.2){
-        diffuse = L * 0.2;
-    }
-    else if(sn<0.4){
-        diffuse = L * 0.4;
-    }
-    else if(sn<0.6){
-        diffuse = L * 0.6;
-    }
-    else if(sn<0.8){
-        diffuse = L * 0.8;
-    }
-    else if(sn<1.0){
-        diffuse = L * 1.0;
-    }*/
-
-        // Glanzlichter
-        if (rv < 0.9) {
-            specular = vec3(0., 0., 0.);
-        }
-        else {
-            specular = vec3(1., 1., 1.);
-        }
-    }
 
     return diffuse + specular;
 }
