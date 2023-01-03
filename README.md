@@ -17,6 +17,8 @@ Informatics**
 
 [zur Webseite](https://gvt.ckitte.de/ea9/)
 
-Im Rahmen der neunten Einsendeaufgabe soll ein Torus mit einer Bildtextur erstellt werden. Als Erweiterung soll ein Torus mit einer prozedural erstellten Textur erstellt werden.
+Im Rahmen der neunten Einsendeaufgabe soll ein Torus mit einer Bildtextur erstellt werden. Als Erweiterung soll ein
+Torus mit einer prozedural erstellten Textur erstellt werden.
 
-Als Interaktion soll zwischen beiden Textturen umgeschaltet werden können. Zudem soll soll sich die Kamera über die Pfeil- und WASD-Tasten bewegen lassen.
+Als Interaktion soll zwischen beiden Textturen umgeschaltet werden können. Zudem soll soll sich die Kamera über die
+Pfeil- und WASD-Tasten bewegen lassen.
