@@ -107,9 +107,9 @@ var app = (function () {
 
             function initShaderProgram() {
                 // Init vertex shader.
-                var vs = initShader(gl.VERTEX_SHADER, "vertexshader");
+                var vs = initShader(gl.VERTEX_SHADER, vertexShaderSrc);
                 // Init fragment shader.
-                var fs = initShader(gl.FRAGMENT_SHADER, "fragmentshader");
+                var fs = initShader(gl.FRAGMENT_SHADER, fragmentShaderSrc);
                 // Link shader into a shader program.
                 prog = gl.createProgram();
                 gl.attachShader(prog, vs);
@@ -126,13 +126,12 @@ var app = (function () {
              * @parameter SourceTagId: Id of HTML Tag with shader source.
              * @returns shader object.
              */
-            function initShader(shaderType, SourceTagId) {
+            function initShader(shaderType, shaderSrc) {
                 var shader = gl.createShader(shaderType);
-                var shaderSource = document.getElementById(SourceTagId).text;
-                gl.shaderSource(shader, shaderSource);
+                gl.shaderSource(shader, shaderSrc);
                 gl.compileShader(shader);
                 if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-                    console.log(SourceTagId + ": " + gl.getShaderInfoLog(shader));
+                    console.log(shaderSrc + ": " + gl.getShaderInfoLog(shader));
                     return null;
                 }
                 return shader;
