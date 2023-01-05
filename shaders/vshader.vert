@@ -1,17 +1,18 @@
 #version  100
 
 attribute vec3 aPosition;
+attribute vec2 aTextureCoord;
 attribute vec3 aNormal;
 
+// Matrizen
 uniform mat4 uPMatrix;
 uniform mat4 uMVMatrix;
 uniform mat3 uNMatrix;
-
-//uniform vec4 uColor;
-varying vec4 vColor;
-
 // Ambient light.
 uniform vec3 ambientLight;
+
+varying vec2 vTextureCoord;
+varying vec4 vColor;
 
 // Pointlights.
 const int MAX_LIGHT_SOURCES = 8;
@@ -31,7 +32,7 @@ struct PhongMaterial {
 };
 uniform PhongMaterial material;
 
-// Phong illumination for single light source,
+// Phong illumination for single light source.txt,
 // no ambient light.
 vec3 phong(vec3 p, vec3 n, vec3 v, LightSource l) {
     vec3 L = l.color;
@@ -76,4 +77,6 @@ void main() {
     vec3 v = normalize(- tPosition.xyz);
 
     vColor = vec4(phong(tPosition.xyz, tNormal, v), 1.0);
+
+    vTextureCoord = aTextureCoord;
 }

@@ -7,10 +7,10 @@
 
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -51,10 +51,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
   (function(exports) {
     /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -116,10 +116,10 @@ glMatrix.toRadian = function(a){
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -186,7 +186,7 @@ vec2.fromValues = function(x, y) {
  * Copy the values from one vec2 to another
  *
  * @param {vec2} out the receiving vector
- * @param {vec2} a the source vector
+ * @param {vec2} a the source.txt vector
  * @returns {vec2} out
  */
 vec2.copy = function(out, a) {
@@ -630,10 +630,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -704,7 +704,7 @@ vec3.fromValues = function(x, y, z) {
  * Copy the values from one vec3 to another
  *
  * @param {vec3} out the receiving vector
- * @param {vec3} a the source vector
+ * @param {vec3} a the source.txt vector
  * @returns {vec3} out
  */
 vec3.copy = function(out, a) {
@@ -1168,10 +1168,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -1246,7 +1246,7 @@ vec4.fromValues = function(x, y, z, w) {
  * Copy the values from one vec4 to another
  *
  * @param {vec4} out the receiving vector
- * @param {vec4} a the source vector
+ * @param {vec4} a the source.txt vector
  * @returns {vec4} out
  */
 vec4.copy = function(out, a) {
@@ -1693,10 +1693,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -1753,7 +1753,7 @@ mat2.clone = function(a) {
  * Copy the values from one mat2 to another
  *
  * @param {mat2} out the receiving matrix
- * @param {mat2} a the source matrix
+ * @param {mat2} a the source.txt matrix
  * @returns {mat2} out
  */
 mat2.copy = function(out, a) {
@@ -1782,7 +1782,7 @@ mat2.identity = function(out) {
  * Transpose the values of a mat2
  *
  * @param {mat2} out the receiving matrix
- * @param {mat2} a the source matrix
+ * @param {mat2} a the source.txt matrix
  * @returns {mat2} out
  */
 mat2.transpose = function(out, a) {
@@ -1805,7 +1805,7 @@ mat2.transpose = function(out, a) {
  * Inverts a mat2
  *
  * @param {mat2} out the receiving matrix
- * @param {mat2} a the source matrix
+ * @param {mat2} a the source.txt matrix
  * @returns {mat2} out
  */
 mat2.invert = function(out, a) {
@@ -1831,7 +1831,7 @@ mat2.invert = function(out, a) {
  * Calculates the adjugate of a mat2
  *
  * @param {mat2} out the receiving matrix
- * @param {mat2} a the source matrix
+ * @param {mat2} a the source.txt matrix
  * @returns {mat2} out
  */
 mat2.adjoint = function(out, a) {
@@ -1848,7 +1848,7 @@ mat2.adjoint = function(out, a) {
 /**
  * Calculates the determinant of a mat2
  *
- * @param {mat2} a the source matrix
+ * @param {mat2} a the source.txt matrix
  * @returns {Number} determinant of a
  */
 mat2.determinant = function (a) {
@@ -1932,10 +1932,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -2011,7 +2011,7 @@ mat2d.clone = function(a) {
  * Copy the values from one mat2d to another
  *
  * @param {mat2d} out the receiving matrix
- * @param {mat2d} a the source matrix
+ * @param {mat2d} a the source.txt matrix
  * @returns {mat2d} out
  */
 mat2d.copy = function(out, a) {
@@ -2044,7 +2044,7 @@ mat2d.identity = function(out) {
  * Inverts a mat2d
  *
  * @param {mat2d} out the receiving matrix
- * @param {mat2d} a the source matrix
+ * @param {mat2d} a the source.txt matrix
  * @returns {mat2d} out
  */
 mat2d.invert = function(out, a) {
@@ -2069,7 +2069,7 @@ mat2d.invert = function(out, a) {
 /**
  * Calculates the determinant of a mat2d
  *
- * @param {mat2d} a the source matrix
+ * @param {mat2d} a the source.txt matrix
  * @returns {Number} determinant of a
  */
 mat2d.determinant = function (a) {
@@ -2187,10 +2187,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -2237,7 +2237,7 @@ mat3.create = function() {
  * Copies the upper-left 3x3 values into the given mat3.
  *
  * @param {mat3} out the receiving 3x3 matrix
- * @param {mat4} a   the source 4x4 matrix
+ * @param {mat4} a   the source.txt 4x4 matrix
  * @returns {mat3} out
  */
 mat3.fromMat4 = function(out, a) {
@@ -2277,7 +2277,7 @@ mat3.clone = function(a) {
  * Copy the values from one mat3 to another
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the source matrix
+ * @param {mat3} a the source.txt matrix
  * @returns {mat3} out
  */
 mat3.copy = function(out, a) {
@@ -2316,7 +2316,7 @@ mat3.identity = function(out) {
  * Transpose the values of a mat3
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the source matrix
+ * @param {mat3} a the source.txt matrix
  * @returns {mat3} out
  */
 mat3.transpose = function(out, a) {
@@ -2348,7 +2348,7 @@ mat3.transpose = function(out, a) {
  * Inverts a mat3
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the source matrix
+ * @param {mat3} a the source.txt matrix
  * @returns {mat3} out
  */
 mat3.invert = function(out, a) {
@@ -2384,7 +2384,7 @@ mat3.invert = function(out, a) {
  * Calculates the adjugate of a mat3
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the source matrix
+ * @param {mat3} a the source.txt matrix
  * @returns {mat3} out
  */
 mat3.adjoint = function(out, a) {
@@ -2407,7 +2407,7 @@ mat3.adjoint = function(out, a) {
 /**
  * Calculates the determinant of a mat3
  *
- * @param {mat3} a the source matrix
+ * @param {mat3} a the source.txt matrix
  * @returns {Number} determinant of a
  */
 mat3.determinant = function (a) {
@@ -2667,10 +2667,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -2751,7 +2751,7 @@ mat4.clone = function(a) {
  * Copy the values from one mat4 to another
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
+ * @param {mat4} a the source.txt matrix
  * @returns {mat4} out
  */
 mat4.copy = function(out, a) {
@@ -2804,7 +2804,7 @@ mat4.identity = function(out) {
  * Transpose the values of a mat4
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
+ * @param {mat4} a the source.txt matrix
  * @returns {mat4} out
  */
 mat4.transpose = function(out, a) {
@@ -2852,7 +2852,7 @@ mat4.transpose = function(out, a) {
  * Inverts a mat4
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
+ * @param {mat4} a the source.txt matrix
  * @returns {mat4} out
  */
 mat4.invert = function(out, a) {
@@ -2906,7 +2906,7 @@ mat4.invert = function(out, a) {
  * Calculates the adjugate of a mat4
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
+ * @param {mat4} a the source.txt matrix
  * @returns {mat4} out
  */
 mat4.adjoint = function(out, a) {
@@ -2937,7 +2937,7 @@ mat4.adjoint = function(out, a) {
 /**
  * Calculates the determinant of a mat4
  *
- * @param {mat4} a the source matrix
+ * @param {mat4} a the source.txt matrix
  * @returns {Number} determinant of a
  */
 mat4.determinant = function (a) {
@@ -3135,7 +3135,7 @@ mat4.rotate = function (out, a, rad, axis) {
     out[10] = a02 * b20 + a12 * b21 + a22 * b22;
     out[11] = a03 * b20 + a13 * b21 + a23 * b22;
 
-    if (a !== out) { // If the source and destination differ, copy the unchanged last row
+    if (a !== out) { // If the source.txt and destination differ, copy the unchanged last row
         out[12] = a[12];
         out[13] = a[13];
         out[14] = a[14];
@@ -3164,7 +3164,7 @@ mat4.rotateX = function (out, a, rad) {
         a22 = a[10],
         a23 = a[11];
 
-    if (a !== out) { // If the source and destination differ, copy the unchanged rows
+    if (a !== out) { // If the source.txt and destination differ, copy the unchanged rows
         out[0]  = a[0];
         out[1]  = a[1];
         out[2]  = a[2];
@@ -3207,7 +3207,7 @@ mat4.rotateY = function (out, a, rad) {
         a22 = a[10],
         a23 = a[11];
 
-    if (a !== out) { // If the source and destination differ, copy the unchanged rows
+    if (a !== out) { // If the source.txt and destination differ, copy the unchanged rows
         out[4]  = a[4];
         out[5]  = a[5];
         out[6]  = a[6];
@@ -3250,7 +3250,7 @@ mat4.rotateZ = function (out, a, rad) {
         a12 = a[6],
         a13 = a[7];
 
-    if (a !== out) { // If the source and destination differ, copy the unchanged last row
+    if (a !== out) { // If the source.txt and destination differ, copy the unchanged last row
         out[8]  = a[8];
         out[9]  = a[9];
         out[10] = a[10];
@@ -3572,10 +3572,10 @@ if(typeof(exports) !== 'undefined') {
 ;
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source.txt and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this
+  * Redistributions of source.txt code must retain the above copyright notice, this
     list of conditions and the following disclaimer.
   * Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation 
@@ -3710,7 +3710,7 @@ quat.fromValues = vec4.fromValues;
  * Copy the values from one quat to another
  *
  * @param {quat} out the receiving quaternion
- * @param {quat} a the source quaternion
+ * @param {quat} a the source.txt quaternion
  * @returns {quat} out
  * @function
  */

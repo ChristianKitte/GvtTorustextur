@@ -6,6 +6,8 @@ var plane = (function () {
         var m = 100;
 
         // Positions.
+        this.textureCoord = new Float32Array(2 * (n + 1) * (m + 1));
+        var textureCoord = this.textureCoord;
         this.vertices = new Float32Array(3 * (n + 1) * (m + 1));
         var vertices = this.vertices;
         // Normals.
@@ -33,6 +35,11 @@ var plane = (function () {
                 var x = u;
                 var y = 0;
                 var z = v;
+
+                // Set texture coordinate. Der Wertebereich wird hierbei auf [0,1]
+                // abgebildet
+                textureCoord[iVertex * 2] = (u + 10) / 20;
+                textureCoord[iVertex * 2 + 1] = (v + 10) / 20;
 
                 // Set vertex positions.
                 vertices[iVertex * 3] = x;

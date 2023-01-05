@@ -10,6 +10,8 @@ var app = (function () {
     let orbitCenter_0 = [0., 0.];
     let orbitCenter_1 = [0., 0.];
 
+    let image = document.getElementById('render-img');
+
     var gl;
 
     // The shader program object is also used to
@@ -66,6 +68,8 @@ var app = (function () {
     };
 
     function start() {
+        //image = renderImage;
+
         init();
         render();
         window.requestAnimationFrame(rotate);
@@ -130,10 +134,10 @@ var app = (function () {
     }
 
     /**
-     * Create and init shader from source.
+     * Create and init shader from source.txt.
      *
      * @parameter shaderType: openGL shader type.
-     * @parameter SourceTagId: Id of HTML Tag with shader source.
+     * @parameter SourceTagId: Id of HTML Tag with shader source.txt.
      * @returns shader object.
      */
     function initShader(shaderType, shaderSrc) {
@@ -148,6 +152,9 @@ var app = (function () {
     }
 
     function initUniforms() {
+        // Texture.
+        prog.textureUniform = gl.getUniformLocation(prog, "uTexture");
+
         // Projection Matrix.
         prog.pMatrixUniform = gl.getUniformLocation(prog, "uPMatrix");
 
@@ -168,7 +175,7 @@ var app = (function () {
         // Loop over light sources.
         for (var j = 0; j < illumination.light.length; j++) {
             var lightNb = "light[" + j + "]";
-            // Store one object for every light source.
+            // Store one object for every light source.txt.
             var l = {};
             l.isOn = gl.getUniformLocation(prog, lightNb + ".isOn");
             l.position = gl.getUniformLocation(prog, lightNb + ".position");
@@ -217,13 +224,13 @@ var app = (function () {
         var mDefault = createPhongMaterial();
 
         createModel("torus", fs, [1, 1, 1, 1], [0, .75, 0],
-            [0, 0, 0, 0], [1, 1, 1, 1], mRed);
+            [0, 0, 0, 0], [1, 1, 1, 1], mRed, 'image/korb.png');
         createModel("sphere", fs, [1, 1, 1, 1], [-1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mGreen);
+            0, 0], [.5, .5, .5], mGreen, 'image/nightearth.png');
         createModel("sphere", fs, [1, 1, 1, 1], [1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mBlue);
+            0, 0], [.5, .5, .5], mBlue, 'image/moon.png');
         createModel("plane", fs, [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0,
-            0], [1, 1, 1, 1], mWhite);
+            0], [1, 1, 1, 1], mWhite, 'image/water.png');
 
         // Select one model that can be manipulated interactively by user.
         interactiveModel = models[0];
@@ -236,7 +243,7 @@ var app = (function () {
      * @parameter fillstyle: wireframe, fill, fillwireframe.
      */
     function createModel(geometryname, fillstyle, color, translate, rotate,
-                         scale, material) {
+                         scale, material, textureFilename) {
         var model = {};
         model.fillstyle = fillstyle;
         model.color = color;
@@ -244,7 +251,53 @@ var app = (function () {
         initTransformations(model, translate, rotate, scale);
         model.material = material;
 
+        if (textureFilename) {
+            initTexture(model, textureFilename);
+        }
         models.push(model);
+    }
+
+    /**
+     * Lädt die für ein Model zu verwendende Textur
+     * @param model Das Model
+     * @param filename Die zu verwendende Textur
+     */
+    function initTexture(model, filename) {
+        var texture = gl.createTexture();
+        model.texture = texture;
+
+        texture.loaded = false;
+        texture.image = new Image();
+        texture.image.onload = function () { //onload ==> The onload attribute fires when an object has been loaded!
+            onloadTextureImage(texture);
+        };
+
+        texture.image.src = filename;
+    }
+
+    function onloadTextureImage(texture) {
+        texture.loaded = true;
+
+        // Use texture object.
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+
+        // Assigen image data.
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,
+            texture.image);
+
+        // Set texture parameter.
+        // Min Filter: NEAREST,LINEAR, .. , LINEAR_MIPMAP_LINEAR,
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        // Mag Filter: NEAREST,LINEAR
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        // Use mip-Mapping.
+        gl.generateMipmap(gl.TEXTURE_2D);
+
+        // Release texture object.
+        gl.bindTexture(gl.TEXTURE_2D, null);
+
+        // Update the scene.
+        render();
     }
 
     /**
@@ -278,6 +331,14 @@ var app = (function () {
         // vertices, normals, indicesLines, indicesTris;
         // Pointer this refers to the window.
         this[geometryname]['createVertexData'].apply(model);
+
+        // Setup texture coordinate vertex buffer object.
+        model.vboTextureCoord = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, model.vboTextureCoord);
+        gl.bufferData(gl.ARRAY_BUFFER, model.textureCoord, gl.STATIC_DRAW);
+        // Bind buffer to attribute variable.
+        prog.textureCoordAttrib = gl.getAttribLocation(prog, 'aTextureCoord');
+        gl.enableVertexAttribArray(prog.textureCoordAttrib);
 
         // Setup position vertex buffer object.
         model.vboPos = gl.createBuffer();
@@ -452,7 +513,23 @@ var app = (function () {
             gl.uniform3fv(prog.materialKsUniform, models[i].material.ks);
             gl.uniform1f(prog.materialKeUniform, models[i].material.ke);
 
+            if (!models[i].texture.loaded) {
+                continue;
+            }
+
+            //Texture.
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, models[i].texture);
+            gl.uniform1i(prog.textureUniform, 0);
+
             draw(models[i]);
+        }
+
+        // Loop over models.
+        for (var ii = 0; ii < models.length; ii++) {
+
+
+            //draw(models[i]);
         }
     }
 
@@ -543,11 +620,19 @@ var app = (function () {
         gl.bindBuffer(gl.ARRAY_BUFFER, model.vboNormal);
         gl.vertexAttribPointer(prog.normalAttrib, 3, gl.FLOAT, false, 0, 0);
 
+        // Setup texture VBO.
+        gl.bindBuffer(gl.ARRAY_BUFFER, model.vboTextureCoord);
+        gl.vertexAttribPointer(prog.textureCoordAttrib, 2, gl.FLOAT, false, 0, 0);
+
         // Setup rendering tris.
         var fill = (model.fillstyle.search(/fill/) != -1);
         if (fill) {
             gl.enableVertexAttribArray(prog.normalAttrib);
+            gl.enableVertexAttribArray(prog.textureCoordAttrib);
+
+            gl.enableVertexAttribArray(prog.normalAttrib);
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.iboTris);
+
             gl.drawElements(gl.TRIANGLES, model.iboTris.numberOfElements,
                 gl.UNSIGNED_SHORT, 0);
         }
@@ -556,6 +641,7 @@ var app = (function () {
         var wireframe = (model.fillstyle.search(/wireframe/) != -1);
         if (wireframe) {
             gl.uniform4fv(prog.colorUniform, [0., 0., 0., 1.]);
+            gl.disableVertexAttribArray(prog.textureCoordAttrib);
             gl.disableVertexAttribArray(prog.normalAttrib);
             gl.vertexAttrib3f(prog.normalAttrib, 0, 0, 0);
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.iboLines);

@@ -1,10 +1,12 @@
-var torus = (function () {
+var sphere = (function () {
 
     function createVertexData() {
-        var n = 16;
+        var n = 32;
         var m = 32;
 
         // Positions.
+        this.textureCoord = new Float32Array(2 * (n + 1) * (m + 1));
+        var textureCoord = this.textureCoord;
         this.vertices = new Float32Array(3 * (n + 1) * (m + 1));
         var vertices = this.vertices;
         // Normals.
@@ -17,9 +19,8 @@ var torus = (function () {
         var indicesTris = this.indicesTris;
 
         var du = 2 * Math.PI / n;
-        var dv = 2 * Math.PI / m;
-        var r = 0.3;
-        var R = 0.5;
+        var dv = Math.PI / m;
+        var r = 1;
         // Counter for entries in index array.
         var iLines = 0;
         var iTris = 0;
@@ -31,9 +32,16 @@ var torus = (function () {
 
                 var iVertex = i * (m + 1) + j;
 
-                var x = (R + r * Math.cos(u)) * Math.cos(v);
-                var y = (R + r * Math.cos(u)) * Math.sin(v);
-                var z = r * Math.sin(u);
+                var x = r * Math.sin(v) * Math.cos(u);
+                var y = r * Math.sin(v) * Math.sin(u);
+                var z = r * Math.cos(v);
+
+                // Set texture coordinate. Der Wertebereich wird hierbei auf [0,1]
+                // abgebildet
+
+
+                textureCoord[iVertex * 2] = u / (2 * Math.PI); // s
+                textureCoord[iVertex * 2 + 1] = v / Math.PI; // t
 
                 // Set vertex positions.
                 vertices[iVertex * 3] = x;
@@ -41,16 +49,10 @@ var torus = (function () {
                 vertices[iVertex * 3 + 2] = z;
 
                 // Calc and set normals.
-                var nx = Math.cos(u) * Math.cos(v);
-                var ny = Math.cos(u) * Math.sin(v);
-                var nz = Math.sin(u);
-                normals[iVertex * 3] = nx;
-                normals[iVertex * 3 + 1] = ny;
-                normals[iVertex * 3 + 2] = nz;
-
-                // if(i>14){
-                // continue;
-                // }
+                var vertexLength = Math.sqrt(x * x + y * y + z * z);
+                normals[iVertex * 3] = x / vertexLength;
+                normals[iVertex * 3 + 1] = y / vertexLength;
+                normals[iVertex * 3 + 2] = z / vertexLength;
 
                 // Set index.
                 // Line on beam.

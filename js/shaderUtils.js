@@ -1,9 +1,3 @@
-const loadImage = () => new Promise(resolve => {
-    const image = new Image();
-    image.addEventListener('load', () => resolve(image));
-    image.src = './images/image.png';
-});
-
 const getSourceSynch = function (url) {
     var req = new XMLHttpRequest();
     req.open("GET", url, false);
