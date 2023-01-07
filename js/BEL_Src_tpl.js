@@ -153,7 +153,12 @@ var app = (function () {
 
     function initUniforms() {
         // Texture.
+        // wird nicht benötigt, da mit dem defaultwert gearbeitet wird (Texture Unit 0)
         prog.textureUniform = gl.getUniformLocation(prog, "uTexture");
+        // Steuert die Anzeige (0 = Bildtextur, 1 = Prozedurale Textur)
+        prog.useProceduralTextureUniform = gl.getUniformLocation(prog, "useProceduralTexture");
+        // Steuert die Art der prozeduralen Textur (1 = Streifen, default ist ein Schwarz)
+        prog.proceduralTextureTypeUniform = gl.getUniformLocation(prog, "proceduralTextureType");
 
         // Projection Matrix.
         prog.pMatrixUniform = gl.getUniformLocation(prog, "uPMatrix");
@@ -224,13 +229,13 @@ var app = (function () {
         var mDefault = createPhongMaterial();
 
         createModel("torus", fs, [1, 1, 1, 1], [0, .75, 0],
-            [0, 0, 0, 0], [1, 1, 1, 1], mRed, 'image/korb.png');
+            [0, 0, 0, 0], [1, 1, 1, 1], mRed, 'image/korb.png', 0);
         createModel("sphere", fs, [1, 1, 1, 1], [-1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mGreen, 'image/nightearth.png');
+            0, 0], [.5, .5, .5], mGreen, 'image/nightearth.png', 1);
         createModel("sphere", fs, [1, 1, 1, 1], [1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mBlue, 'image/moon.png');
+            0, 0], [.5, .5, .5], mBlue, 'image/moon.png', 0);
         createModel("plane", fs, [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0,
-            0], [1, 1, 1, 1], mWhite, 'image/water.png');
+            0], [1, 1, 1, 1], mWhite, 'image/water.png', 1);
 
         // Select one model that can be manipulated interactively by user.
         interactiveModel = models[0];
@@ -243,7 +248,7 @@ var app = (function () {
      * @parameter fillstyle: wireframe, fill, fillwireframe.
      */
     function createModel(geometryname, fillstyle, color, translate, rotate,
-                         scale, material, textureFilename) {
+                         scale, material, textureFilename, ProceduralTextureTyp) {
         var model = {};
         model.fillstyle = fillstyle;
         model.color = color;
@@ -254,6 +259,9 @@ var app = (function () {
         if (textureFilename) {
             initTexture(model, textureFilename);
         }
+
+        model.ProceduralTextureTyp = ProceduralTextureTyp;
+
         models.push(model);
     }
 
@@ -517,19 +525,15 @@ var app = (function () {
                 continue;
             }
 
+            gl.uniform1i(prog.proceduralTextureTypeUniform, models[i].ProceduralTextureTyp);
+            gl.uniform1i(prog.useProceduralTextureUniform, textureTyp);
+
             //Texture.
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, models[i].texture);
             gl.uniform1i(prog.textureUniform, 0);
 
             draw(models[i]);
-        }
-
-        // Loop over models.
-        for (var ii = 0; ii < models.length; ii++) {
-
-
-            //draw(models[i]);
         }
     }
 
