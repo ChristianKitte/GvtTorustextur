@@ -228,14 +228,21 @@ var app = (function () {
         // Create some default material.
         var mDefault = createPhongMaterial();
 
+        // Torus
         createModel("torus", fs, [1, 1, 1, 1], [0, .75, 0],
-            [0, 0, 0, 0], [1, 1, 1, 1], mRed, 'image/korb.png', 0);
-        createModel("sphere", fs, [1, 1, 1, 1], [-1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mGreen, 'image/nightearth.png', 1);
-        createModel("sphere", fs, [1, 1, 1, 1], [1.25, .5, 0], [0, 0,
-            0, 0], [.5, .5, .5], mBlue, 'image/moon.png', 0);
-        createModel("plane", fs, [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0,
-            0], [1, 1, 1, 1], mWhite, 'image/water.png', 1);
+            [0, 0, 0, 0], [1, 1, 1, 1], mRed, 'image/korb.png', 5);
+
+        // Kugel links
+        createModel("sphere", fs, [1, 1, 1, 1],
+            [-1.25, .5, 0], [0, 0, 0, 0], [.5, .5, .5], mGreen, 'image/nightearth.png', 1);
+
+        // Kugel rechts
+        createModel("sphere", fs, [1, 1, 1, 1], [1.25, .5, 0],
+            [0, 0, 0, 0], [.5, .5, .5], mBlue, 'image/moon.png', 3);
+
+        // Untergrund
+        createModel("plane", fs, [1, 1, 1, 1], [0, 0, 0, 0],
+            [0, 0, 0, 0], [1, 1, 1, 1], mWhite, 'image/water.png', 2);
 
         // Select one model that can be manipulated interactively by user.
         interactiveModel = models[0];
@@ -514,17 +521,25 @@ var app = (function () {
                 models[i].nMatrix);
             // Color (not used with lights).
             gl.uniform4fv(prog.colorUniform, models[i].color);
-            // NEW
-            // Material.
-            gl.uniform3fv(prog.materialKaUniform, models[i].material.ka);
-            gl.uniform3fv(prog.materialKdUniform, models[i].material.kd);
-            gl.uniform3fv(prog.materialKsUniform, models[i].material.ks);
-            gl.uniform1f(prog.materialKeUniform, models[i].material.ke);
+
+            // Set Material
+            if (textureTyp == 2) {
+                gl.uniform3fv(prog.materialKaUniform, models[i].material.ka);
+                gl.uniform3fv(prog.materialKdUniform, models[i].material.kd);
+                gl.uniform3fv(prog.materialKsUniform, models[i].material.ks);
+                gl.uniform1f(prog.materialKeUniform, models[i].material.ke);
+            } else {
+                gl.uniform3fv(prog.materialKaUniform, [1., 1., 1.]);
+                gl.uniform3fv(prog.materialKdUniform, [1., 1., 1.]);
+                gl.uniform3fv(prog.materialKsUniform, [1., 1., 1.]);
+                gl.uniform1f(prog.materialKeUniform, 10.);
+            }
 
             if (!models[i].texture.loaded) {
                 continue;
             }
 
+            //gl.uniform1i(prog.proceduralTextureTypeUniform, models[i].ProceduralTextureTyp);
             gl.uniform1i(prog.proceduralTextureTypeUniform, models[i].ProceduralTextureTyp);
             gl.uniform1i(prog.useProceduralTextureUniform, textureTyp);
 

@@ -8,6 +8,7 @@ attribute vec3 aNormal;
 uniform mat4 uPMatrix;
 uniform mat4 uMVMatrix;
 uniform mat3 uNMatrix;
+
 // Ambient light.
 uniform vec3 ambientLight;
 
