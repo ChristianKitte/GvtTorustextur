@@ -1,5 +1,6 @@
 var app = (function () {
     let animate = false;
+    let lightOn = 0;
     let textureTyp = 0;
     let currentOrbitDegree_0 = 0.;
     let currentOrbitDegree_1 = 1.;
@@ -58,11 +59,11 @@ var app = (function () {
                 isOn: true,
                 //position: [6., 1., 3.],
                 position: [6., 0., 3.],
-                color: [1., 0., 0.]
+                color: [1., 1., 1.]
             }, {
                 isOn: true,
                 //position: [6., 1., 3.],
-                position: [-6., 1., 3.],
+                position: [-6., 2., 3.],
                 color: [0., 1., 0.]
             },]
     };
@@ -173,8 +174,9 @@ var app = (function () {
         prog.colorUniform = gl.getUniformLocation(prog, "uColor");
 
         // Light.
-        prog.ambientLightUniform = gl.getUniformLocation(prog,
-            "ambientLight");
+        prog.lightOnUniform = gl.getUniformLocation(prog, "lightOn");
+        prog.ambientLightUniform = gl.getUniformLocation(prog, "ambientLight");
+
         // Array for light sources uniforms.
         prog.lightUniform = [];
         // Loop over light sources.
@@ -250,9 +252,15 @@ var app = (function () {
 
     /**
      * Create model object, fill it and push it in models array.
-     *
-     * @parameter geometryname: string with name of geometry.
-     * @parameter fillstyle: wireframe, fill, fillwireframe.
+     * @param geometryname string with name of geometry.
+     * @param fillstyle wireframe, fill, fillwireframe.
+     * @param color
+     * @param translate
+     * @param rotate
+     * @param scale
+     * @param material
+     * @param textureFilename
+     * @param ProceduralTextureTyp
      */
     function createModel(geometryname, fillstyle, color, translate, rotate,
                          scale, material, textureFilename, ProceduralTextureTyp) {
@@ -389,10 +397,16 @@ var app = (function () {
     }
 
     function initEventHandler() {
-        let dropDown = document.getElementById("texture-typ");
+        let dropDown1 = document.getElementById("texture-typ");
+        let dropDown2 = document.getElementById("light-on");
 
-        dropDown.onchange = function (evt) {
+        dropDown1.onchange = function (evt) {
             textureTyp = document.getElementById("texture-typ").value;
+            render();
+        }
+
+        dropDown2.onchange = function (evt) {
+            lightOn = document.getElementById("light-on").value;
             render();
         }
 
@@ -451,6 +465,8 @@ var app = (function () {
                     animate = !animate;
 
                     if (animate) {
+                        dropDown2.value = 1;
+                        lightOn = document.getElementById("light-on").value;
                         window.requestAnimationFrame(rotate);
                     }
 
@@ -461,6 +477,8 @@ var app = (function () {
                     animate = !animate;
 
                     if (animate) {
+                        dropDown2.value = 1;
+                        lightOn = document.getElementById("light-on").value;
                         window.requestAnimationFrame(rotate);
                     }
 
@@ -512,15 +530,15 @@ var app = (function () {
             // Update modelview for model.
             updateTransformations(models[i]);
 
-            // Set uniforms for model.
-            //
             // Transformation matrices.
             gl.uniformMatrix4fv(prog.mvMatrixUniform, false,
                 models[i].mvMatrix);
             gl.uniformMatrix3fv(prog.nMatrixUniform, false,
                 models[i].nMatrix);
+
             // Color (not used with lights).
             gl.uniform4fv(prog.colorUniform, models[i].color);
+            gl.uniform1f(prog.lightOnUniform, lightOn);
 
             // Set Material
             if (textureTyp == 2) {

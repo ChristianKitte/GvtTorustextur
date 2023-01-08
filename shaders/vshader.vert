@@ -11,8 +11,9 @@ uniform mat3 uNMatrix;
 
 // Ambient light.
 uniform vec3 ambientLight;
+uniform float lightOn;
 
-varying vec2 vTextureCoord;
+varying vec2 vTextureCoord; // Texture Koordinaten
 varying vec4 vColor;
 
 // Pointlights.
@@ -57,10 +58,12 @@ vec3 phong(vec3 p, vec3 n, vec3 v) {
     // Calculate ambient light.
     vec3 result = material.ka * ambientLight;
 
-    // Add light from all light sources.
-    for (int j = 0; j < MAX_LIGHT_SOURCES; j++) {
-        if (light[j].isOn) {
-            result += phong(p, n, v, light[j]);
+    if (lightOn == 1.) {
+        // Add light from all light sources.
+        for (int j = 0; j < MAX_LIGHT_SOURCES; j++) {
+            if (light[j].isOn) {
+                result += phong(p, n, v, light[j]);
+            }
         }
     }
     return result;

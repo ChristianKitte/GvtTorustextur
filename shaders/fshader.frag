@@ -13,7 +13,8 @@ void main() {
     float zbuffer = fract(gl_FragCoord.z);
 
     if (useProceduralTexture == 0) { // use image texture
-                                     gl_FragColor = texture2D(uTexture, vTextureCoord)*vColor;
+                                     gl_FragColor = texture2D(uTexture, vTextureCoord) * vColor;
+
     } else if (useProceduralTexture == 2) { // use material
                                             gl_FragColor = vColor * vec4(zbuffer, zbuffer, zbuffer, 1.0);
     }
@@ -75,6 +76,6 @@ void main() {
                                                     tColor = vec4(0. + percent, 1. - percent, 0., 1. * percent2 / whiteLines);
            }
 
-           gl_FragColor = tColor * vec4(zbuffer, zbuffer, zbuffer, 1.0)*vColor;
+           gl_FragColor = tColor * vec4(zbuffer, zbuffer, zbuffer, 1.0) * vColor;
     }
 }
