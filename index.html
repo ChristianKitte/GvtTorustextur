@@ -22,18 +22,11 @@
         </h4>
 
         <p>
-            Zur Lösung wurde eine Aufgabe der Lerneinheit Beleuchtung als Grundlage verwendet und erweitert. Im Rahmen
-            der neunten Einsendeaufgabe soll ein Torus mit einer Bildtextur erstellt werden. Als Erweiterung soll ein
-            Torus mit einer prozedural erstellten Textur erstellt werden.
+            Im Rahmen der neunten Einsendeaufgabe soll primär ein Torus mit einer Bildtextur erstellt werden. Als Erweiterung
+            soll dieser zusätzlich mit einer prozedural erstellten Textur erstellt werden.
 
             Um den Tiefeneffekt zu verstärken, wird der resultierende Farbton mit der Z-Komponente von
             gl_FragCoord multipliziert.
-        </p>
-
-        <p>
-            Über die Checkbox kann die verwendete Textur eingestellte werden. Bei markierter checkbox wird eine
-            Bildtextur angezeigt. Wird die Markierung entfernt, so zeigt sich der Torus mit einer prozedural
-            erzeugten Textur.
         </p>
 
         <p>
@@ -47,6 +40,29 @@
                 zum Einsatz.
             </a>
         </p>
+
+        <p>
+            Die Grundlage der Texturen bilden die folgenden Bilder:
+        <ul>
+            <li><a href="http://www.planetaryvisions.com/Texture_map.php?pid=213" target="_blank">
+                Mond (Kugel 1)
+            </a></li>
+            <li><a href="https://math.hws.edu/graphicsbook/source/webgl/textures/NightEarth-512x256.jpg"
+                   target="_blank">
+                Welt bei Nacht mit Lichter (Kugel 2)
+            </a></li>
+            <li>
+                <a href="https://2.bp.blogspot.com/-xWw3zjL4Ukc/XDtC9g5k3PI/AAAAAAAAOKM/-O2XthNOxQ8xKUd9wT9tXNVXtx1mJMU0QCEwYBhgL/s1600/DSC06233.JPG"
+                   target="_blank">
+                    Geflechteter Korb (Torus)
+                </a></li>
+            <li><a href="https://catlikecoding.com/unity/tutorials/flow/texture-distortion/tutorial-image.jpg"
+                   target="_blank">
+                Wasser (Untergrund)
+            </a></li>
+        </ul>
+
+        </p>
     </div>
 
     <div>
@@ -56,16 +72,18 @@
         <ol>
             <li>Die Kamera kann mit den <em><b>Pfeiltasten</b></em> um die Szene bewegt werden</li>
             <li>Die <em><b>Tasten w, s, a, d</b></em> bewegen die Kamera nach oben, unten, rechts und links</li>
-            <li>Die <em><b>Tasten l, L (shift-l)</b></em> startet oder stoppt die Bewegung der Lichter</li>
+            <li>Die <em><b>Tasten l, L (shift-l)</b></em> startet oder stoppt die Bewegung der Lichter (ggf. wird das
+                Licht eingeschaltet)
+            </li>
             <li>
-                <label for="light-on">Licht an oder aus?</label>
+                <label for="light-on">Schaltet die Punktlichter an oder aus: </label>
                 <select name="light-on" id="light-on">
                     <option value="0" selected>Licht aus</option>
                     <option value="1">Licht an</option>
                 </select>
             </li>
             <li>
-                <label for="texture-typ">Welcher Texturtyp soll verwendet werden?</label>
+                <label for="texture-typ">Wählt den anzuzeigenden Texturtyp: </label>
                 <select name="texture-typ" id="texture-typ">
                     <option value="0" selected>Bildtextur</option>
                     <option value="1">Prozedurale Textur</option>
