@@ -33,13 +33,7 @@ Wie bereits in der EA 8, wurde auch in dieser Abgabe eine Beleuchtung umgesetzt.
 
 Die Textur kann mit der ***Dropdownbox (5)*** geändert werden. Hierbei kann zwischen einer Bildtextur, der prozeduralen Textur sowie der ursprünglichen Farbe aus der EA 8 umgeschaltet werden. 
 
-http://www.planetaryvisions.com/Texture_map.php?pid=213  moon  
-https://math.hws.edu/graphicsbook/source/webgl/textures/NightEarth-512x256.jpg   nightearth  
-https://catlikecoding.com/unity/tutorials/flow/texture-distortion/tutorial-image.jpg  water  
-https://upload.wikimedia.org/wikipedia/commons/e/e6/PSM_V69_D182_Small_magellanic_cloud_and_its_variable_stars.png  stars  
-https://2.bp.blogspot.com/-xWw3zjL4Ukc/XDtC9g5k3PI/AAAAAAAAOKM/-O2XthNOxQ8xKUd9wT9tXNVXtx1mJMU0QCEwYBhgL/s1600/DSC06233.JPG
-
-Als ***Bildtextur*** der ersten Kugel dient hierbei eine [***Welttextur***](https://math.hws.edu/graphicsbook/source/webgl/textures/NightEarth-512x256.jpg), welche die Erde bei Nacht und die vorhandene Beleuchtung zeigt. Für die zweite Kugel wurde eine [***Mondtextur***]([Moon texture map](http://www.planetaryvisions.com/Texture_map.php?pid=213)) verwendet. Für den eigentlich geforderten Torus wurde eine [***Textur auf Basis eines geflechteten Korbes***](https://2.bp.blogspot.com/-xWw3zjL4Ukc/XDtC9g5k3PI/AAAAAAAAOKM/-O2XthNOxQ8xKUd9wT9tXNVXtx1mJMU0QCEwYBhgL/s1600/DSC06233.JPG) verwendet. Der Untergrund wurde mit einer [***Wassertextur***](https://catlikecoding.com/unity/tutorials/flow/texture-distortion/tutorial-image.jpg) versehen:
+Als ***Bildtextur*** der ersten Kugel dient hierbei eine [***Welttextur***](https://math.hws.edu/graphicsbook/source/webgl/textures/NightEarth-512x256.jpg), welche die Erde bei Nacht und die vorhandene Beleuchtung zeigt. Für die zweite Kugel wurde eine [***Mondtextur***](http://www.planetaryvisions.com/images_new/213.jpg) verwendet. Für den eigentlich geforderten Torus wurde eine [***Textur auf Basis eines geflechteten Korbes***](https://2.bp.blogspot.com/-xWw3zjL4Ukc/XDtC9g5k3PI/AAAAAAAAOKM/-O2XthNOxQ8xKUd9wT9tXNVXtx1mJMU0QCEwYBhgL/s1600/DSC06233.JPG) verwendet. Der Untergrund wurde mit einer [***Wassertextur***](https://catlikecoding.com/unity/tutorials/flow/texture-distortion/tutorial-image.jpg) versehen:
 
 *(ohne Licht)*
 
